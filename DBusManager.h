@@ -12,10 +12,14 @@ class DBusManager : public QObject
 public:
     explicit DBusManager(QObject *parent = nullptr);
     
-    QString GetIPv4DNSforEthernet();
     QString GetIPv4forEthernet();
     QString GetIPv4GatewayforEthernet();
-    
+    QString GetIPv4SubnetforEthernet();
+    QString GetIPv4DNSforEthernet();
+    QString GetIPv6forEthernet();
+    QString GetIPv6GatewayforEthernet();
+    QString GetIPv6PrefixLengthforEthernet();
+    QString GetIPv6DNSforEthernet();
 private:
     QDBusConnection m_customBus;  // Custom bus connection
     QDBusInterface* m_ethernetInterface;

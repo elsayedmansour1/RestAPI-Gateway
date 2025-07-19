@@ -27,16 +27,33 @@ void HttpServer::incomingConnection(qintptr socketDescriptor)
         // Add newline to ensure clean output
         QByteArray responseBody;
         QString statusCode = "200 OK";
-        
-        if (request.contains("GET /ipv4dns")) {
-            responseBody = m_dbusManager->GetIPv4DNSforEthernet().toUtf8() + "\n";
-        }
-        else if (request.contains("GET /ipv4Address")) {
+        qInfo() << request;
+        if (request.contains("GET /ipv4Address")) {
             responseBody = m_dbusManager->GetIPv4forEthernet().toUtf8() + "\n";
         }
         else if (request.contains("GET /ipv4Gateway")){
+            qInfo() << "############ipv4Gateway##### welcome elsayed";
             responseBody = m_dbusManager->GetIPv4GatewayforEthernet().toUtf8() + "\n";
-            }
+        }
+        else if (request.contains("GET /ipv4Subnet")){
+            qInfo() << "##########ipv4Subnet####### welcome elsayed";
+            responseBody = m_dbusManager->GetIPv4SubnetforEthernet().toUtf8() + "\n";
+        }
+        else if (request.contains("GET /ipv4Dns")) {
+            responseBody = m_dbusManager->GetIPv4DNSforEthernet().toUtf8() + "\n";
+        }
+        else if (request.contains("GET /ipv6Address")) {
+            responseBody = m_dbusManager->GetIPv6forEthernet().toUtf8() + "\n";
+        }
+        else if (request.contains("GET /ipv6Gateway")){
+            responseBody = m_dbusManager->GetIPv6GatewayforEthernet().toUtf8() + "\n";
+        }
+        else if (request.contains("GET /ipv6Subnet")){
+            responseBody = m_dbusManager->GetIPv6PrefixLengthforEthernet().toUtf8() + "\n";
+        }
+        else if (request.contains("GET /ipv6Dns")) {
+            responseBody = m_dbusManager->GetIPv6DNSforEthernet().toUtf8() + "\n";
+        }
         else {
             responseBody = "Endpoint not found\n";
             statusCode = "404 Not Found";

@@ -35,17 +35,6 @@ DBusManager::DBusManager(QObject *parent)
     }
 }
 
-QString DBusManager::GetIPv4DNSforEthernet()
-{
-    if (!m_ethernetInterface->isValid()) {
-        return "DBus Interface Error";
-    }
-    
-    QDBusReply<QString> reply = m_ethernetInterface->call("getIPv4DNSforEthernet");
-    
-    return reply.isValid() ? reply.value() : "DBus Error: " + reply.error().message();
-}
-
 QString DBusManager::GetIPv4forEthernet()
 {
     if (!m_ethernetInterface->isValid()) {
@@ -66,4 +55,70 @@ QString DBusManager::GetIPv4GatewayforEthernet(){
     QDBusReply<QString> reply = m_ethernetInterface->call("getIPv4GatewayforEthernet");
     
     return reply.isValid() ? reply.value() : "DBus Error: " + reply.error().message();
+}
+
+QString DBusManager::GetIPv4SubnetforEthernet()
+{
+    if (!m_ethernetInterface->isValid()) {
+        return "DBus Interface Error";
+    }
+    
+    QDBusReply<QString> reply = m_ethernetInterface->call("getIPv4SubnetforEthernet");
+    
+    return reply.isValid() ? reply.value() : "DBus Error: " + reply.error().message();
+}
+
+QString DBusManager::GetIPv4DNSforEthernet()
+{
+    if (!m_ethernetInterface->isValid()) {
+        return "DBus Interface Error";
+    }
+    
+    QDBusReply<QString> reply = m_ethernetInterface->call("getIPv4DNSforEthernet");
+    
+    return reply.isValid() ? reply.value() : "DBus Error: " + reply.error().message();
+}
+
+
+QString DBusManager::GetIPv6forEthernet()
+{
+    if (!m_ethernetInterface->isValid()) {
+        return "DBus Interface Error";
+    }
+    
+    QDBusReply<QString> reply = m_ethernetInterface->call("getIPv6forEthernet");
+    
+    return reply.isValid() ? reply.value() : "DBus Error: " + reply.error().message();
+}
+
+QString DBusManager::GetIPv6GatewayforEthernet()
+{
+    if (!m_ethernetInterface->isValid()) {
+        return "DBus Interface Error";
+    }
+    
+    QDBusReply<QString> reply = m_ethernetInterface->call("getIPv6GatewayforEthernet");
+    
+    return reply.isValid() ? reply.value() : "DBus Error: " + reply.error().message();
+}
+QString DBusManager::GetIPv6PrefixLengthforEthernet()
+{
+    if (!m_ethernetInterface->isValid()) {
+        return "DBus Interface Error";
+    }
+    
+    QDBusReply<int> reply = m_ethernetInterface->call("getIPv6PrefixLengthforEthernet");
+    
+    return reply.isValid() ? QString::number(reply.value()) : "DBus Error: " + reply.error().message();
+}
+
+QString DBusManager::GetIPv6DNSforEthernet()
+{
+    if (!m_ethernetInterface->isValid()) {
+        return "DBus Interface Error";
+    }
+    
+    QDBusReply<QString> reply = m_ethernetInterface->call("getIPv6DNSforEthernet");
+    
+    return reply.isValid() ? reply.value() : "DBus Error: " + reply.error().message(); 
 }
